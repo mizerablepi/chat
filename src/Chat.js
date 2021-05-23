@@ -17,7 +17,7 @@ function Chat() {
     const [roomName, setRoomName] = useState("");
     const [roomkey, setRoomKey] = useState("")
     const [messages, setMessages] = useState([]);
-    const [{ user }, dispatch] = useStateValue();
+    const [{ user }] = useStateValue();
 
     useEffect(() => {
         if (roomId) {
@@ -75,7 +75,7 @@ function Chat() {
             </div>
             <div className='chat_body'>
                 {messages.map(message => (
-                    <p className={`chat_message ${message.name == user.displayName && 'chat_receiver'}`}>
+                    <p className={`chat_message ${message.name === user.displayName && 'chat_receiver'}`}>
                         <span className="chat_name">{message.name}</span>
                         {CryptoJS.AES.decrypt(message.message, roomkey).toString(CryptoJS.enc.Utf8)}
                         <span className="chat_timestemp">{new Date(message.timestamp?.toDate()).toUTCString()}</span>
