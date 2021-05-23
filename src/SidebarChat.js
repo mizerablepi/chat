@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Avatar } from "@material-ui/core";
 import './SidebarChat.css';
 import db from './firebase';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
 
 function SidebarChat({ id, name, roomkey, addNewChat }) {
     const [seed, setSeed] = useState("");
-    const [messages, setMessages] = useState("");
-    const history = useHistory()
+    const [, setMessages] = useState("");
+    const history = useHistory();
 
     useEffect(() => {
         if (id) {
@@ -36,10 +35,10 @@ function SidebarChat({ id, name, roomkey, addNewChat }) {
 
     const openRoom = () => {
         let passkey = prompt("what;s the key??")
-        if (passkey == roomkey) {
+        if (passkey === roomkey) {
             history.push(`/rooms/${id}`)
         } else {
-            alert("Wrong key Madafaqa!!!")
+            alert("Wrong key !")
         }
 
     }
